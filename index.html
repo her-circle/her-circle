@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HER Circle — Hands as an Expression of Positivity</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#7faf8c;--sage-light:#b2d4ba;--sage-pale:#e8f5eb;
+    --green-dark:#1a3a2a;--green-mid:#2e6b45;
+    --gold:#c8973a;--gold-light:#f0d08a;
+    --lavender:#5c4a8a;--lav-light:#ede8f5;
+    --teal:#2e7a75;--teal-light:#e0f0ef;
+    --rose:#b0485c;--rose-light:#fae8ec;
+    --peach:#c06030;--peach-light:#fdf0e8;
+    --cream:#fdfaf5;--dark:#1a3a2a;--mid:#4a5e4c;--gray:#666;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
+
+  /* HEADER */
+  header{background:var(--green-dark);padding:10px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 24px rgba(0,0,0,.4);}
+  .logo-area{display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .logo-img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid rgba(178,212,186,.4);box-shadow:0 2px 12px rgba(0,0,0,.35);}
+  .logo-brand{font-family:'Playfair Display',serif;color:#fff;font-size:19px;font-weight:700;letter-spacing:2px;display:block;}
+  .logo-tagline{color:var(--sage-light);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;display:block;}
+  nav{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;}
+  nav button{background:transparent;border:none;color:rgba(255,255,255,.6);font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.8px;padding:9px 15px;border-radius:30px;cursor:pointer;transition:all .3s;text-transform:uppercase;white-space:nowrap;}
+  nav button:hover{color:#fff;background:rgba(255,255,255,.1);}
+  nav button.active{color:var(--dark);background:var(--sage-light);}
+
+  /* SECTIONS */
+  .section{display:none;animation:fadeIn .45s ease;}
+  .section.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  /* SHARED */
+  .page-hero{background:linear-gradient(140deg,var(--green-dark) 0%,#2d5040 60%,var(--teal) 100%);padding:64px 60px;color:#fff;position:relative;overflow:hidden;}
+  .page-hero::after{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(127,175,140,.1);pointer-events:none;}
+  .page-hero .pg-tag{color:var(--sage-light);font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
+  .page-hero h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);line-height:1.15;margin-bottom:14px;}
+  .page-hero p{color:rgba(255,255,255,.72);font-size:16px;max-width:680px;line-height:1.75;}
+  .content-wrap{max-width:1120px;margin:0 auto;padding:68px 40px;}
+  .sec-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--sage);font-weight:800;margin-bottom:12px;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);color:var(--dark);line-height:1.2;margin-bottom:18px;}
+  .divider{width:54px;height:3px;background:linear-gradient(90deg,var(--sage),var(--teal));border-radius:2px;margin:14px 0 26px;}
+  .body-text{color:var(--mid);font-size:15.5px;line-height:1.8;margin-bottom:14px;}
+
+  /* HOME */
+  .hero{min-height:90vh;background:linear-gradient(155deg,var(--green-dark) 0%,#2d4e38 55%,var(--teal) 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 28% 50%,rgba(127,175,140,.22) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(200,151,58,.12) 0%,transparent 50%);}
+  .hand-floats{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .hand-floats span{position:absolute;font-size:50px;opacity:.06;animation:floatH 13s infinite ease-in-out;}
+  .hand-floats span:nth-child(1){top:10%;left:6%;animation-delay:0s;}
+  .hand-floats span:nth-child(2){top:62%;left:4%;animation-delay:2s;font-size:68px;}
+  .hand-floats span:nth-child(3){top:18%;right:5%;animation-delay:4s;}
+  .hand-floats span:nth-child(4){bottom:12%;right:8%;animation-delay:1s;font-size:76px;}
+  .hand-floats span:nth-child(5){top:42%;right:18%;animation-delay:3s;font-size:42px;}
+  .hand-floats span:nth-child(6){bottom:28%;left:20%;animation-delay:5s;}
+  @keyframes floatH{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-24px) rotate(5deg);}}
+  .hero-content{position:relative;z-index:2;max-width:800px;}
+  .hero-tag{display:inline-block;background:rgba(127,175,140,.25);border:1px solid rgba(178,212,186,.4);color:var(--sage-light);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:7px 22px;border-radius:30px;margin-bottom:26px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,72px);color:#fff;line-height:1.1;margin-bottom:10px;}
+  .hero h1 em{font-style:italic;color:var(--gold-light);}
+  .hero-sub{color:var(--sage-light);font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:26px;}
+  .hero p{color:rgba(255,255,255,.74);font-size:16.5px;line-height:1.8;max-width:580px;margin:0 auto 38px;}
+  .hero-goals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:38px;}
+  .hero-goal{background:rgba(255,255,255,.1);border:1px solid rgba(178,212,186,.3);border-radius:14px;padding:14px 22px;text-align:center;min-width:140px;}
+  .hero-goal .g-icon{font-size:26px;margin-bottom:6px;}
+  .hero-goal .g-label{color:rgba(255,255,255,.88);font-size:13px;font-weight:700;letter-spacing:1px;}
+  .hero-btn{display:inline-block;background:var(--sage);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 38px;border-radius:50px;border:none;cursor:pointer;transition:all .3s;box-shadow:0 6px 24px rgba(127,175,140,.4);}
+  .hero-btn:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 10px 30px rgba(46,122,117,.45);}
+  .crisis-banner{background:var(--green-dark);padding:36px 40px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;border-top:2px solid rgba(127,175,140,.22);border-bottom:2px solid rgba(127,175,140,.22);}
+  .crisis-item{padding:14px 24px;text-align:center;border-right:1px solid rgba(127,175,140,.16);flex:1;min-width:130px;}
+  .crisis-item:last-child{border-right:none;}
+  .crisis-item .c-icon{font-size:28px;margin-bottom:7px;}
+  .crisis-item .c-label{color:rgba(255,255,255,.82);font-size:12.5px;font-weight:700;letter-spacing:.6px;}
+  .stats-row{background:var(--cream);display:grid;grid-template-columns:repeat(4,1fr);}
+  .stat-item{padding:46px 28px;text-align:center;border-right:1px solid rgba(127,175,140,.2);position:relative;overflow:hidden;}
+  .stat-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--teal));transform:scaleX(0);transition:transform .4s;}
+  .stat-item:hover::before{transform:scaleX(1);}
+  .stat-item:last-child{border-right:none;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:46px;color:var(--sage);font-weight:700;line-height:1;margin-bottom:8px;}
+  .stat-label{color:var(--mid);font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
+  .quote-block{background:var(--sage-pale);padding:68px 40px;text-align:center;}
+  .quote-block blockquote{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,30px);color:var(--dark);font-style:italic;max-width:700px;margin:0 auto 18px;line-height:1.5;}
+  .quote-tri{font-size:14px;color:var(--mid);letter-spacing:2px;}
+
+  /* ABOUT */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .value-list{list-style:none;margin-top:6px;}
+  .value-list li{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid rgba(127,175,140,.18);color:var(--mid);font-size:15px;line-height:1.65;}
+  .value-list li .dot{min-width:9px;height:9px;border-radius:50%;background:var(--sage);margin-top:7px;}
+  .org-card{background:var(--green-dark);border-radius:22px;padding:46px 36px;color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(26,58,42,.25);}
+  .org-card::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:rgba(127,175,140,.1);pointer-events:none;}
+  .org-logo-big{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 20px;position:relative;z-index:1;border:3px solid rgba(178,212,186,.4);box-shadow:0 4px 18px rgba(0,0,0,.35);}
+  .org-card h3{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:6px;position:relative;z-index:1;}
+  .org-card .tagline{color:var(--sage-light);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px;position:relative;z-index:1;}
+  .org-card p{color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.75;position:relative;z-index:1;}
+  .crisis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:38px;}
+  .crisis-card{background:#fff;border:1px solid rgba(127,175,140,.22);border-radius:16px;padding:26px 22px;text-align:center;transition:all .3s;box-shadow:0 2px 12px rgba(0,0,0,.04);}
+  .crisis-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(127,175,140,.2);border-color:var(--sage);}
+  .crisis-card .icon{font-size:34px;margin-bottom:12px;}
+  .crisis-card h4{font-size:14.5px;color:var(--dark);font-weight:800;margin-bottom:6px;}
+  .crisis-card p{font-size:13px;color:var(--mid);line-height:1.6;}
+
+  /* ACTIVITIES */
+  .timeline{position:relative;padding-left:52px;}
+  .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--sage),var(--teal),var(--lavender));}
+  .tl-item{position:relative;margin-bottom:34px;background:#fff;border-radius:16px;padding:26px 30px;border:1px solid rgba(127,175,140,.18);box-shadow:0 2px 14px rgba(0,0,0,.04);transition:all .3s;}
+  .tl-item:hover{transform:translateX(6px);box-shadow:0 8px 28px rgba(127,175,140,.17);}
+  .tl-dot{position:absolute;left:-42px;top:26px;width:20px;height:20px;border-radius:50%;border:3px solid #fff;}
+  .tl-item:nth-child(1) .tl-dot{background:var(--sage);box-shadow:0 0 0 3px var(--sage);}
+  .tl-item:nth-child(2) .tl-dot{background:var(--gold);box-shadow:0 0 0 3px var(--gold);}
+  .tl-item:nth-child(3) .tl-dot{background:var(--lavender);box-shadow:0 0 0 3px var(--lavender);}
+  .tl-item:nth-child(4) .tl-dot{background:var(--teal);box-shadow:0 0 0 3px var(--teal);}
+  .tl-item:nth-child(5) .tl-dot{background:var(--rose);box-shadow:0 0 0 3px var(--rose);}
+  .tl-item:nth-child(6) .tl-dot{background:var(--peach);box-shadow:0 0 0 3px var(--peach);}
+  .tl-item:nth-child(7) .tl-dot{background:var(--gold);box-shadow:0 0 0 3px var(--gold);}
+  .tl-item:nth-child(8) .tl-dot{background:var(--sage);box-shadow:0 0 0 3px var(--sage);}
+  .tl-step{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);font-weight:800;margin-bottom:5px;}
+  .tl-title{font-family:'Playfair Display',serif;font-size:21px;color:var(--dark);margin-bottom:5px;}
+  .tl-theory{font-size:11.5px;color:var(--teal);font-weight:700;letter-spacing:1px;margin-bottom:7px;text-transform:uppercase;}
+  .tl-body{color:var(--mid);font-size:14.5px;line-height:1.7;}
+  .materials-block{background:var(--green-dark);padding:58px 40px;color:#fff;}
+  .materials-inner{max-width:1120px;margin:0 auto;}
+  .mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:32px;}
+  .mat-item{background:rgba(255,255,255,.07);border:1px solid rgba(127,175,140,.22);border-radius:14px;padding:20px 16px;text-align:center;transition:all .3s;}
+  .mat-item:hover{background:rgba(127,175,140,.15);border-color:var(--sage);transform:translateY(-3px);}
+  .mat-item .m-icon{font-size:30px;margin-bottom:8px;}
+  .mat-item .m-name{font-size:12.5px;color:rgba(255,255,255,.82);font-weight:700;}
+  .breath-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px;}
+  .breath-card{background:#fff;border-radius:18px;padding:32px 26px;border-top:4px solid var(--sage);box-shadow:0 4px 18px rgba(0,0,0,.06);}
+  .breath-card:nth-child(2){border-top-color:var(--teal);}
+  .breath-card:nth-child(3){border-top-color:var(--lavender);}
+  .breath-card h4{font-family:'Playfair Display',serif;font-size:17px;color:var(--dark);margin-bottom:14px;}
+  .breath-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:9px;font-size:13.5px;color:var(--mid);line-height:1.6;}
+  .breath-step .num{min-width:23px;height:23px;border-radius:50%;background:var(--sage-pale);color:var(--sage);font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  /* THEORY */
+  .theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:26px;margin-top:46px;}
+  .theory-card{border-radius:20px;padding:36px 30px;position:relative;overflow:hidden;transition:all .3s;color:#fff;}
+  .theory-card:hover{transform:translateY(-6px);}
+  .theory-card.t1{background:linear-gradient(135deg,#1a3a2a,#2d5040);}
+  .theory-card.t2{background:linear-gradient(135deg,#3a2a5a,#4e3a7a);}
+  .theory-card.t3{background:linear-gradient(135deg,#1e4a48,#2e6a65);}
+  .theory-card.t4{background:linear-gradient(135deg,#4a3010,#6a4820);}
+  .theory-card.t5{background:linear-gradient(135deg,#3a1020,#6a2030);}
+  .theory-card.t6{background:linear-gradient(135deg,#3a1a00,#6a3a10);}
+  .theory-badge{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.13);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 11px;border-radius:20px;}
+  .theory-card .t-icon{font-size:42px;margin-bottom:18px;}
+  .theory-card h3{font-family:'Playfair Display',serif;font-size:21px;margin-bottom:10px;}
+  .theory-card .t-sub{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+  .theory-detail{background:#fff;border-radius:20px;margin-top:24px;box-shadow:0 4px 24px rgba(0,0,0,.07);border:1px solid rgba(127,175,140,.18);overflow:hidden;}
+  .theory-detail-header{padding:26px 34px;display:flex;align-items:center;gap:16px;}
+  .theory-detail-header .t-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0;}
+  .theory-row{display:grid;grid-template-columns:200px 1fr;border-top:1px solid rgba(127,175,140,.15);}
+  .theory-row-label{background:var(--sage-pale);padding:17px 18px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green-mid);display:flex;align-items:flex-start;border-right:1px solid rgba(127,175,140,.2);}
+  .theory-row-val{padding:17px 22px;font-size:14.5px;color:var(--mid);line-height:1.75;}
+
+  /* EMERGENCY SECTION */
+  .emergency-section{background:linear-gradient(135deg,#5a1a1a,#8b2020);padding:58px 40px;color:#fff;}
+  .emergency-inner{max-width:1120px;margin:0 auto;}
+  .emergency-inner .sec-title{color:#fff;}
+  .sign-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:30px;}
+  .sign-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,180,180,.25);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:12px;}
+  .sign-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+  .sign-card p{font-size:14px;color:rgba(255,255,255,.85);line-height:1.6;}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:28px;}
+  .step-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,200,150,.2);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:14px;}
+  .step-num{min-width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;}
+  .step-card p{font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.6;}
+
+  /* ETHICS */
+  .ethics-section{background:var(--green-dark);padding:68px 40px;color:#fff;}
+  .ethics-inner{max-width:1120px;margin:0 auto;}
+  .ethics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:36px;}
+  .ethic-item{background:rgba(255,255,255,.06);border:1px solid rgba(127,175,140,.18);border-radius:14px;padding:22px 20px;display:flex;align-items:flex-start;gap:12px;transition:all .3s;}
+  .ethic-item:hover{background:rgba(127,175,140,.12);border-color:var(--sage);}
+  .ethic-check{min-width:26px;height:26px;border-radius:50%;background:rgba(127,175,140,.22);display:flex;align-items:center;justify-content:center;color:var(--sage-light);font-size:13px;flex-shrink:0;}
+  .ethic-item p{font-size:13.5px;color:rgba(255,255,255,.8);line-height:1.6;}
+
+  /* RESOURCES */
+  .resources-section{background:var(--sage-pale);padding:68px 40px;}
+  .resources-inner{max-width:1120px;margin:0 auto;}
+  .res-category{margin-bottom:44px;}
+  .res-cat-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .res-cat-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .res-cat-header h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--dark);}
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+  .res-card{background:#fff;border-radius:14px;padding:20px 22px;border:1px solid rgba(127,175,140,.2);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .3s;}
+  .res-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(127,175,140,.18);}
+  .res-card .res-name{font-weight:800;font-size:14px;color:var(--dark);margin-bottom:4px;}
+  .res-card .res-desc{font-size:12.5px;color:var(--mid);margin-bottom:10px;line-height:1.55;}
+  .res-card a{font-size:12px;color:var(--teal);font-weight:700;text-decoration:none;word-break:break-all;}
+  .res-card a:hover{text-decoration:underline;}
+
+  /* REFERENCES */
+  .references-section{background:#fff;padding:68px 40px;}
+  .references-inner{max-width:1120px;margin:0 auto;}
+  .ref-entry{padding:13px 0 13px 28px;border-bottom:1px solid rgba(127,175,140,.15);font-size:14px;color:var(--mid);line-height:1.75;position:relative;}
+  .ref-entry::before{content:'';position:absolute;left:0;top:22px;width:8px;height:8px;border-radius:50%;background:var(--sage);}
+  .ref-entry a{color:var(--teal);font-weight:700;font-size:13px;word-break:break-all;}
+  .ref-entry a:hover{text-decoration:underline;}
+
+  /* CONTACT */
+  .contact-layout{display:grid;grid-template-columns:1fr 1.2fr;min-height:580px;}
+  .contact-left{background:var(--green-dark);padding:68px 48px;color:#fff;}
+  .contact-right{background:#fff;padding:68px 48px;}
+  .contact-item{display:flex;gap:15px;align-items:flex-start;margin-bottom:28px;}
+  .contact-icon{min-width:42px;height:42px;background:rgba(127,175,140,.2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+  .contact-info .c-label{color:var(--sage-light);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;font-weight:700;}
+  .contact-info .c-val{color:rgba(255,255,255,.85);font-size:14.5px;line-height:1.6;}
+  .form-group{margin-bottom:22px;}
+  .form-group label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);font-weight:800;margin-bottom:7px;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 17px;border:2px solid rgba(127,175,140,.22);border-radius:11px;font-family:'Nunito',sans-serif;font-size:15px;color:var(--dark);background:var(--cream);transition:all .3s;outline:none;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--sage);background:#fff;box-shadow:0 0 0 4px rgba(127,175,140,.1);}
+  .form-group textarea{resize:vertical;min-height:126px;}
+  .submit-btn{width:100%;background:var(--green-dark);color:#fff;border:none;padding:15px;border-radius:11px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+  .submit-btn:hover{background:var(--sage);box-shadow:0 8px 22px rgba(127,175,140,.3);}
+
+  /* FACILITATORS */
+  .facilitators-section{background:var(--cream);padding:68px 40px;}
+  .facilitators-inner{max-width:1120px;margin:0 auto;}
+  .fac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:36px;}
+  .fac-card{background:#fff;border-radius:18px;padding:28px 26px;border:1px solid rgba(127,175,140,.2);box-shadow:0 2px 14px rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:18px;transition:all .3s;}
+  .fac-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(127,175,140,.18);border-color:var(--sage);}
+  .fac-avatar{min-width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--green-mid),var(--teal));display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:800;flex-shrink:0;font-family:'Playfair Display',serif;}
+  .fac-info{}
+  .fac-name{font-weight:800;font-size:15px;color:var(--dark);margin-bottom:3px;}
+  .fac-reg{font-size:12px;color:var(--mid);letter-spacing:.5px;margin-bottom:6px;}
+  .fac-phone{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--teal);font-weight:700;text-decoration:none;}
+  .fac-phone:hover{text-decoration:underline;}
+  .fac-num-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--sage-pale);color:var(--green-mid);font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px;}
+
+  footer{background:var(--green-dark);border-top:1px solid rgba(127,175,140,.15);padding:26px 40px;display:flex;align-items:center;justify-content:space-between;color:rgba(255,255,255,.4);font-size:12.5px;flex-wrap:wrap;gap:10px;}
+  footer .f-tri{color:var(--sage-light);font-weight:700;}
+
+  @media(max-width:900px){
+    header{padding:12px 20px;flex-direction:column;gap:12px;}
+    .two-col,.contact-layout,.breath-phases{grid-template-columns:1fr;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .page-hero{padding:48px 24px;}
+    .content-wrap{padding:48px 24px;}
+    .contact-left,.contact-right{padding:48px 26px;}
+    .theory-row{grid-template-columns:1fr;}
+    .theory-row-label{border-right:none;border-bottom:1px solid rgba(127,175,140,.2);}
+    .crisis-banner{flex-direction:column;}
+    .crisis-item{border-right:none;border-bottom:1px solid rgba(127,175,140,.15);}
+    .sign-grid,.steps-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area" onclick="showTab('home',document.querySelector('nav button'))">
+    <img src="data:image/jpeg;base64,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" alt="HER Circle Logo" class="logo-img">
+    <div>
+      <span class="logo-brand">HERCircle</span>
+      <span class="logo-tagline">Healing · Empowerment · Resilience</span>
+    </div>
+  </div>
+  <nav>
+    <button class="active" onclick="showTab('home',this)">Home</button>
+    <button onclick="showTab('about',this)">About Us</button>
+    <button onclick="showTab('activities',this)">Activities</button>
+    <button onclick="showTab('theory',this)">Theoretical Details</button>
+    <button onclick="showTab('contact',this)">Contact Us</button>
+  </nav>
+</header>
+
+<!-- ══ HOME ══ -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="hand-floats"><span>🖐</span><span>✋</span><span>🤚</span><span>👐</span><span>🖐</span><span>✋</span></div>
+    <div class="hero-content">
+      <div class="hero-tag">✦ A Therapeutic Group Intervention ✦</div>
+      <h1>"Hands as an Expression<br>of <em>Positivity</em>"</h1>
+      <div class="hero-sub">For Women in Crisis — Building Strength, Healing &amp; Resilience</div>
+      <p>A structured, art-based group therapeutic intervention for women aged 18 and above who have survived disaster, conflict, displacement, domestic violence, or any crisis situation — supporting healing, empowerment, and resilience through creative expression.</p>
+      <div class="hero-goals">
+        <div class="hero-goal"><div class="g-icon">🌿</div><div class="g-label">Healing</div></div>
+        <div class="hero-goal"><div class="g-icon">✊</div><div class="g-label">Empowerment</div></div>
+        <div class="hero-goal"><div class="g-icon">🌱</div><div class="g-label">Resilience</div></div>
+      </div>
+      <button class="hero-btn" onclick="showTab('activities',document.querySelectorAll('nav button')[2])">Explore the Programme</button>
+    </div>
+  </div>
+  <div class="crisis-banner">
+    <div class="crisis-item"><div class="c-icon">🌊</div><div class="c-label">Natural Disaster</div></div>
+    <div class="crisis-item"><div class="c-icon">🕊</div><div class="c-label">Armed Conflict &amp; War</div></div>
+    <div class="crisis-item"><div class="c-icon">🏕</div><div class="c-label">Forced Displacement</div></div>
+    <div class="crisis-item"><div class="c-icon">🏠</div><div class="c-label">Domestic Violence</div></div>
+    <div class="crisis-item"><div class="c-icon">💛</div><div class="c-label">Any Vulnerable Situation</div></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">18+</div><div class="stat-label">Age — All Women Welcome</div></div>
+    <div class="stat-item"><div class="stat-num">5–10</div><div class="stat-label">Participants per Session</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Theoretical Frameworks</div></div>
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Structured Session Phases</div></div>
+  </div>
+  <div class="quote-block">
+    <blockquote>"Each hand tells a story of survival. Together, they tell a story of strength."</blockquote>
+    <div class="quote-tri">Healing &nbsp;·&nbsp; <strong>Empowerment</strong> &nbsp;·&nbsp; Resilience</div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div id="about" class="section">
+  <div class="page-hero">
+    <div class="pg-tag">✦ Who We Are ✦</div>
+    <h2>About HER Circle</h2>
+    <p>A specialised organisation dedicated to healing, empowerment, and resilience for women who have experienced any form of crisis, conflict, or vulnerability — anywhere in the world.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="two-col">
+      <div>
+        <div class="sec-label">Our Mission</div>
+        <div class="divider"></div>
+        <h2 class="sec-title">Supporting Women Through Crisis — Towards Strength</h2>
+        <p class="body-text">HER Circle creates safe, culturally sensitive therapeutic spaces for women whose lives have been disrupted by disaster, armed conflict, forced displacement, domestic violence, or any other crisis situation. This intervention is adaptable across all cultural, linguistic, and geographic contexts.</p>
+        <p class="body-text">The three central goals of every session are <strong>Healing</strong>, <strong>Empowerment</strong>, and <strong>Resilience</strong>. We believe every woman carries within her a reservoir of inner strength — and that creative expression and collective experience can help her access it.</p>
+        <ul class="value-list">
+          <li><span class="dot"></span>Inclusive of all crisis contexts — disaster, conflict, displacement, domestic violence, and any vulnerability</li>
+          <li><span class="dot"></span>Culturally sensitive and trauma-informed at every step</li>
+          <li><span class="dot"></span>Grounded in six evidence-based therapeutic frameworks</li>
+          <li><span class="dot"></span>Adaptable to any community, language, and cultural context</li>
+          <li><span class="dot"></span>Committed to voluntary participation and participant autonomy at all times</li>
+        </ul>
+      </div>
+      <div>
+        <div class="org-card">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABNAGsDASIAAhEBAxEB/8QAHQAAAQUBAQEBAAAAAAAAAAAAAAUGBwgJBAEDAv/EAEMQAAECBQIDBAYFCQgDAAAAAAECAwAEBQYREiEHEzEIIkFhFDJRcYGhFSNCYpEXUlWCkqKxstEWJDNjcoOT4ZTT8P/EABoBAAMBAQEBAAAAAAAAAAAAAAIDBAUAAQb/xAA2EQABAwIDBAcHAwUAAAAAAAABAAIDBBESITFhcYGhBRMiMkFRkQYUFSMzUrE0wfAkcpLR4f/aAAwDAQACEQMRAD8AplBBDy4W8O69f9bakKVLOqaUsJU4lOcnxCfacbk9ANzHjnBouUmeeOBhfIbD+ep2JpSsvMTcwiXlWXH3lnCG20lSlHyAiWOHHZ+vy8XUKbkFy7BPeVjVj3qyEJ+Ks+UXE4MdnC1LLlm5mqy7c/PEArQd0Z+8rqv3bJ8jE5stNMMoZZbQ02gaUoQkBKR7AB0gO07Z+VGDV1OY+W3gXf6bzO5VLtPsaUplLa67VULVsSkKU6fdtoH8fjEpULs28M6Y0hP0e48sDdWltGfwTn8SYmWPnzmedyea3zdzo1DVtjO3xH4iO6tvii+GQH6l3f3Enle3oFHv5E+HP6DV/wCQv+sclR4C8NZ5vQ5R1pHk5q/nBh9VyuMUtaUKaU6dKlr0kd0JST+OdIx96FVS0pRrUoJTjOScCBa2JxLQMwjd0LSMaHGFoB0yCrfdXZFseo610uYMoo+qFNY+bZSP3TEJcRuyTdlEbXM0Jwz7KRnuHmj5JCx+yR5xf7rHsF1dtDZL+HhmcL3N43Ho649LLIC5LYrluv8AKq9Pdl+8UhfVBPsyNs+XWEeNaOIXDq1r4kXWKzT2i8tOkTCEDX7lZGFDyOfLEUh7QXZtrFlLXVKCgzdOUSQEAkHyGclKvuknPgT0jsRb3vVee9y05tVAW+4acRq3mNoVdYI9UlSVFKgUqBwQRuDHkMWknLw3tGfvS6ZWjSLbiuYtIcUgZIBOAB5k7D8fAxptwZ4bUjh3bLElKy7PpxbCX3Uj1R10JPXTnqeqjufDEDdgSwGpWivXhNs5dX/gkj7Sht+CCD/uGLawtvaOI8FmU7fepjUP0aSGjdkXbybgbNNSiCCCGLTREaXnPzNGuITraHUvc7UjmDZSRt1GxBBI9oyQeiTClxKqNyU6ZlH6StxuWSglSkJGCrPqqJCs7AYASPHvexh8JbnqFyXEq3qzKNT1OcSt9KFJUfRVDfuqJJCSdsE7ZGMDaAmp3Sx3abEK49DTVFI6ojcOzml6qoqdQotMqEu1MupmWS28UJKlFaTpySN+8Ep9+IaV+3jVqfXHbenXX+WPRlzJK90KwpzupO2xcR5HlJB2zl+XXcVvMVOSaam6nLppilamZMaUL0FYLZGR0U0B7lfEcPGE0L+zQvWQo8vPVBD4l2ppxCilvSpSdakZ0rwU4GoEbjqNop6HpY6aq6yQF2IW45Zrq6OpfRQw2tttyT04chYs+RCi4QEnRqb0DTk6dIPeKcdFK7yup6w4ogThvc141ZuXblnnXNM0SvHf5yjgqU4FYKhvuA4kAbBMT3DayF0UpxHVRuiMVmkojnqMlKVGRekZ6XbmJZ5OlxtwZSoR0QRIgIDhY6LP3th8FlWhV13HRmlLp8xlasD7Pjn7ycjJ8Rg9QYrVGt3FS2GLtsao0h1lLrqmi5LgjP1gBwPjuk+SjGVN20V6i3LP0wNuFDDpCDgnKDun44IhbeycKzaX+mlNKe7a7d2hHA2tsIHgtNOzPIM0/hBSm2UgBalk49qToHyQIkuIf7I1eZrfB+RCFpLkurvJB3AWkK/mKx+qYmCOi7gR9Ffoox4gWO8ZHmiCCEO8667b9Ml5xqSRNl6dYlNCni3p5rgQFZ0qzgqG2OmYa1pcbBaIBJsEoViQaqMg5LONy6llJLSnmUupbXggL0nY4zFfazZnG2kGbqsrV2pwIJ1S8k4AHkD/ACdISRj7OM+wRK90X1M0aoVmWbozMymmJkVazOFBd9KdLY25ZxpIJO5yI66tc1Xp1Qpsg5Rqe49Pz6pNBRUlFKMMl0KV9VkHuqGMfmnfO1kDpIdGg387b/wqInyRiw0UNWjclCn6XUFXDT5uXqkujOhqZSlLq8FJSQ6AWyNRJKiRtnJPVPo7XEy93n5e0yqkUZvZTgmiGln80ugfWHr6o0756nJmliuW7cNOptSqNuNTdRdmX5SVllMNvucxpSg4ULVgaBoJ1EpHTxIEOKSrUop1yWmGF00soaymZW0kArKgEd1Z37mfZgjBO+GmcRklsee3O25UyVsrgQeabfCa2bgotKK7umKdO1IL+ocZl0a2UYxguBIKif8A4mH1CNX7kpdIo81UlPomhLSpmyyw6guLaAyVJBIyMb5hT9LlfS/Q/SWfSdOvk6xr0+3T1x5xFI5zzjcNVA8lxxFfaCCCFIERRviRalMXxAr+plB01B5A28ErKR8gIvC84hlpbrqwhtCSpSidgB1MZz8TuJrbXECt41HmTanjjplffI/eiWpa51g3VfK+00FRUdVHTd/M8Mr87Jy9hricxbtectuqzAblJjugqOwSTkK/VUTnyWT4RfUEEZG4jHGmzs1Tp9mek3VNTDKtSFjwMX27K/H+m3HR2LduOYRLTkukIbdcXskdAlRP2fYrw6HwJb3DsK1sXuMpxfTeb3+1x1B2OOd/O99QrMw2+IdDnLgocvISaZRZRPy0w4mZWUoU226lak7JVkkJxjGN4cSgFoIzsodRCaikBDYbTOzPLBzp1bGGh7mODmhamItNwmRc9g1GbmrhTSZSisSdTTTg02XFNgejvFxepKWyO8DgYz03jtq1oT1RqFIT9D0GTpknUTNPy7T6zzEqZU2ogcoDVlQONvV65OztapzqHcqn5lTfdITqIIIUFdc9DjBGOhMc6KGttLaGapONIQAnSleBgDGw8Dnfx8doe2oeRn/MrJzJMQ7RsmtQbTuSkCkkPSE39BzEy1JBb60l+Sd6JWdB0uIwjB7wISckZzHTW7Vq1XrMxOPtU1DMyaWpxsvKXj0WaW64n1BqCkLwOm+x23hy/RK+ZqNUnyCc6ebsPd4/Pxj8/QzmFD6WqBz0y6dv6x3Xuvfx/wC3/KLE298XJNio2fPuUa5aQxK0pTdQ56pCZUspWxzGUthBSEHSBp05B9XG22I7aDbM7K3TNVSopYmUqm3ZuVcEyrUwpxtKFJ0aBqIA0hRV6uMAQszNDS7PicRUJxtzQUHS51BWV4z1wCcDB2AAj5It5SHHVoq9QSXN1aXAO9tvsP8AreC6y4ti5JBlfpZLkEctOlFSjakLmn5kqOdTqskbAYH8fjDa4ocQaDYNDdn6rMt88NlTUvrAKvMn7KfP8MnaJnENzukzTshYZJDYBNLtR8QZOyOHU40XwmcnWlICAe9y+h/aPcHvJ8IzMqM29Pz8xPTKtT0w4pxZ8ycmH3xx4m1TiRdL8/MvLMoHCW0dArwBx4ADYDwHmTEeQtgJOIqWkje97qiUWLsgPJo04nU8B4Ijop07N06dbnJGYcl5ho5QtBwR/wBeUc8EM1VzmhwLXC4KtBwP7U9Yt/kUq5wJmSGEgqJKUjyO5R80+Qi3tk8WLHuyXacp9aYaccGzb6wnJ9gVnSr4HMZRR2Umq1KlTHPps6/KueJbWQD7x0PxheAt7pWcKOWn/TOy+12Y4HUcx5BbFAgjI3EexmBafaA4i28ENsVVa2k/ZC1IB+AOn92JwsLtPXzU5dovysk6Ttl9IV0I/MCY8MhaLuCXN0k+lbiqIiB5ggj9jyVz4Irj+Xe7v0dQ/wDgd/8AZCRcvaGvKRlgtFPpCTjq20sHqB9pSoAVUZ0Wez2s6PkdhZcncrSwlXBcVDt9jnVmqS0mkjKUuL76v9KRufgIz9vPtR8R6i89LsTRlQCU9x0pGPc2EfMmIjuW+rpuFazUqu+tK/XQg6Qr343V8SYZicdAtUT1co+XGGjzcf2be/8AkFdfjN2qqDQpd2QtT+8zmCnmkBSknyTuE+9W/wB0xTDiJxAuO+akubrU64tCl6g3rKhnwKid1H5DwAhpwR6GZ3OZRxUQDxLM7G4aX0G4aDfmdqIIIINXL//Z" alt="HER Circle Logo" class="org-logo-big">
+          <h3>HER Circle</h3>
+          <div class="tagline">Healing · Empowerment · Resilience</div>
+          <p>A specialised organisation delivering structured group therapeutic interventions for female survivors of any crisis situation. Facilitators are trained in trauma-informed practice, expressive arts therapy, and group counselling dynamics — ensuring every session is safe, culturally sensitive, and evidence-based.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--sage-pale);padding:68px 40px;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <div class="sec-label" style="text-align:center;">Who We Serve</div>
+      <h2 class="sec-title" style="text-align:center;max-width:560px;margin:0 auto 8px;">Any Woman, Any Crisis Context</h2>
+      <p class="body-text" style="text-align:center;max-width:640px;margin:0 auto 36px;">For women aged 18 and above. Suitable after initial stabilisation or PFA. Adaptable to any language and community.</p>
+      <div class="crisis-grid">
+        <div class="crisis-card"><div class="icon">🌊</div><h4>Natural Disaster</h4><p>Earthquakes, floods, cyclones, tsunamis, landslides — any sudden environmental disaster causing loss, displacement, and trauma</p></div>
+        <div class="crisis-card"><div class="icon">🕊</div><h4>Armed Conflict &amp; War</h4><p>Women affected by conflict, political violence, or war — including those who have lost family or witnessed harm</p></div>
+        <div class="crisis-card"><div class="icon">🏕</div><h4>Forced Displacement</h4><p>Internally displaced persons (IDPs) or refugees forced to flee their homes and communities</p></div>
+        <div class="crisis-card"><div class="icon">🏠</div><h4>Domestic &amp; Gender-Based Violence</h4><p>Survivors of intimate partner violence, sexual violence, gender-based violence, or abuse in the home or community</p></div>
+        <div class="crisis-card"><div class="icon">💛</div><h4>Any Vulnerable Situation</h4><p>Any crisis disrupting safety, stability, and wellbeing — including poverty, community violence, or loss</p></div>
+        <div class="crisis-card"><div class="icon">🌍</div><h4>Any Community, Any Language</h4><p>Delivered in the participant's language, honouring all cultural, religious, and community identities</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ACTIVITIES ══ -->
+<div id="activities" class="section">
+  <div class="page-hero">
+    <div class="pg-tag">✦ The Programme ✦</div>
+    <h2>Activities &amp; Session Flow</h2>
+    <p>Each phase flows naturally — there is no fixed time. Facilitators allow participants to lead. The art activity continues until all drawings are complete.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="sec-label" style="text-align:center;">Eight-Phase Arc</div>
+    <h2 class="sec-title" style="text-align:center;">Session Journey</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 01</div><div class="tl-title">Welcome &amp; Opening</div><div class="tl-theory">TIC · Person-Centred</div><div class="tl-body">Greet participants warmly. Acknowledge their experiences. Establish a safe, confidential, non-judgmental space where every woman feels seen and valued.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 02</div><div class="tl-title">Empowerment Song</div><div class="tl-theory">Group Therapy · TIC</div><div class="tl-body">Stand in a circle. Sing together. Hold hands if comfortable. Sit on palm mats — non-hierarchical, familiar seating that honours cultural comfort.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 03</div><div class="tl-title">Psychoeducation</div><div class="tl-theory">TIC · Positive Psychology</div><div class="tl-body">Normalise trauma responses. Affirm strength and resilience. Connect emotional experience to the creative activity, using simple warm language.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 04</div><div class="tl-title">Breathing Exercise</div><div class="tl-theory">Somatic Grounding</div><div class="tl-body">3 deep breaths (4-count inhale, 2-count hold, 6-count exhale). Allow silence. Settle the nervous system. No equipment, no language barrier — universally accessible.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 05</div><div class="tl-title">Hand Drawing</div><div class="tl-theory">Expressive Arts Therapy</div><div class="tl-body">Each participant traces her hand on A4 paper and fills it with colours, shapes, and symbols representing her personal strengths and hopes. Soft music plays. No rush — all the time needed.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 06</div><div class="tl-title">Colour Paper Strips</div><div class="tl-theory">Positive Psychology · EAT</div><div class="tl-body">Each participant writes one personal strength or hope per coloured strip, to be pasted into the centre circle of the collective mural.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 07</div><div class="tl-title">Collective Mural</div><div class="tl-theory">Group Therapy · EAT</div><div class="tl-body">All hand drawings are arranged around the outside of a large circle. Strength strips fill the centre. Voluntary sharing — never pressured. A shared symbol of community resilience.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-step">Phase 08</div><div class="tl-title">Reflective Closing</div><div class="tl-theory">All Frameworks</div><div class="tl-body">Affirm the group. Guide 2–3 final deep breaths together. Thank all participants. Display the mural as a lasting symbol of shared strength and collective empowerment.</div></div>
+    </div>
+  </div>
+  <div class="materials-block">
+    <div class="materials-inner">
+      <div class="sec-label" style="color:var(--sage-light);">What You'll Need</div>
+      <h2 class="sec-title" style="color:#fff;">Materials Required</h2>
+      <div class="mat-grid">
+        <div class="mat-item"><div class="m-icon">📄</div><div class="m-name">A4 White Paper</div></div>
+        <div class="mat-item"><div class="m-icon">🎨</div><div class="m-name">Coloured Pencils / Pastels</div></div>
+        <div class="mat-item"><div class="m-icon">🪵</div><div class="m-name">Large Cardboard</div></div>
+        <div class="mat-item"><div class="m-icon">🌿</div><div class="m-name">Palm Mats</div></div>
+        <div class="mat-item"><div class="m-icon">✏️</div><div class="m-name">Pencils</div></div>
+        <div class="mat-item"><div class="m-icon">📎</div><div class="m-name">Glue / Tape</div></div>
+        <div class="mat-item"><div class="m-icon">🌈</div><div class="m-name">Colour Paper Strips</div></div>
+        <div class="mat-item"><div class="m-icon">🎵</div><div class="m-name">Soft Music</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--sage-pale);padding:68px 40px;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <div class="sec-label">Breathing Guide</div>
+      <h2 class="sec-title">Simple Breathing Exercise</h2>
+      <p class="body-text">Allow silence after each round. Do not rush. No language, literacy, or equipment required — universally accessible to all participants.</p>
+      <div class="breath-phases">
+        <div class="breath-card"><h4>🌱 Start — 3 Opening Breaths</h4>
+          <div class="breath-step"><span class="num">1</span>Sit comfortably. Hands in your lap.</div>
+          <div class="breath-step"><span class="num">2</span>Gently close your eyes.</div>
+          <div class="breath-step"><span class="num">3</span>Breathe in through your nose… (4 counts)</div>
+          <div class="breath-step"><span class="num">4</span>Hold for a moment… (2 counts)</div>
+          <div class="breath-step"><span class="num">5</span>Breathe out slowly through your mouth… (6 counts)</div>
+          <div class="breath-step"><span class="num">6</span>Repeat 2–3 times until settled.</div>
+        </div>
+        <div class="breath-card"><h4>🌊 Middle — During Activity</h4>
+          <div class="breath-step"><span class="num">✓</span>Allow participants to breathe naturally at their own pace.</div>
+          <div class="breath-step"><span class="num">✓</span>No instruction needed during the creative phase.</div>
+          <div class="breath-step"><span class="num">✓</span>Invite them to stay present and notice how their body feels.</div>
+        </div>
+        <div class="breath-card"><h4>🌸 End — 3 Closing Breaths</h4>
+          <div class="breath-step"><span class="num">7</span>Guide 2–3 more deep breaths together.</div>
+          <div class="breath-step"><span class="num">8</span>Breathe in… hold… breathe out slowly…</div>
+          <div class="breath-step"><span class="num">9</span>Slowly open your eyes. You are here. You are safe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ THEORETICAL DETAILS ══ -->
+<div id="theory" class="section">
+  <div class="page-hero">
+    <div class="pg-tag">✦ Theoretical Foundations ✦</div>
+    <h2>Theoretical Frameworks</h2>
+    <p>Six integrated evidence-based frameworks, each selected for its relevance across all crisis contexts — disaster, conflict, displacement, domestic violence, and any vulnerable situation.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="sec-label" style="text-align:center;">Overview</div>
+    <h2 class="sec-title" style="text-align:center;max-width:600px;margin:0 auto 16px;">Six Frameworks, One Intervention</h2>
+    <div class="theory-grid">
+      <div class="theory-card t1"><div class="theory-badge">Framework 1</div><div class="t-icon">🛡</div><h3>Trauma-Informed Care</h3><div class="t-sub">SAMHSA, 2014 · Herman, 1992</div><p>The overarching container. Embeds safety, empowerment, and cultural sensitivity throughout — for all crisis contexts.</p></div>
+      <div class="theory-card t2"><div class="theory-badge">Framework 2</div><div class="t-icon">🎨</div><h3>Expressive Arts Therapy</h3><div class="t-sub">Malchiodi, 2011 · Regev &amp; Cohen-Yatziv, 2018</div><p>Non-verbal creative expression transcending language and cultural barriers — the methodological core.</p></div>
+      <div class="theory-card t3"><div class="theory-badge">Framework 3</div><div class="t-icon">🌱</div><h3>Person-Centered Practice</h3><div class="t-sub">Rogers, 1961 · Kirschenbaum &amp; Jourdan, 2005</div><p>Empathy, unconditional positive regard, and non-directive facilitation. Restores agency and self-worth.</p></div>
+      <div class="theory-card t4"><div class="theory-badge">Framework 4</div><div class="t-icon">🤝</div><h3>Group Therapy &amp; Dynamics</h3><div class="t-sub">Yalom &amp; Leszcz, 2005 · Burlingame et al., 2004</div><p>Universality, cohesion, and hope. The group rebuilds community bonds severed by crisis.</p></div>
+      <div class="theory-card t5"><div class="theory-badge">Framework 5</div><div class="t-icon">✨</div><h3>Positive Psychology &amp; PTG</h3><div class="t-sub">Seligman et al., 2005 · Tedeschi &amp; Calhoun, 2004</div><p>Strengths-orientation and Post-Traumatic Growth — you are more than what happened to you.</p></div>
+      <div class="theory-card t6"><div class="theory-badge">Framework 6</div><div class="t-icon">🌬</div><h3>Somatic Grounding</h3><div class="t-sub">Levine, 2010 · Van der Kolk, 2014</div><p>Simple breathing activates the parasympathetic nervous system. Universally accessible — no equipment needed.</p></div>
+    </div>
+
+    <h2 class="sec-title" style="margin-top:64px;">Framework Details</h2>
+
+    <!-- TIC -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#1a3a2a,#2d5040);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">1</div>
+        <div><h3 style="color:#fff;">Trauma-Informed Care (TIC)</h3><div style="color:rgba(178,212,186,.8);font-size:12px;letter-spacing:1px;">SAMHSA, 2014 · Herman, J.L., 1992 · IASC, 2007</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">TIC recognises the widespread impact of trauma and integrates knowledge about it into all services. Built on six principles: Safety, Trustworthiness &amp; Transparency, Peer Support, Collaboration &amp; Mutuality, Empowerment &amp; Choice, and Cultural, Historical &amp; Gender Issues (SAMHSA, 2014).</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">Whether participants are survivors of disaster, conflict, displacement, or domestic violence, trauma responses are physiologically similar: heightened stress arousal, hypervigilance, emotional numbing, shame, and disrupted self-worth. TIC is the container within which all other frameworks operate.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">Informed verbal consent is obtained before beginning. Confidentiality is established as a group agreement. Art sharing is always voluntary — never pressured. A referral pathway is prepared before each session. Palm mat seating creates a non-hierarchical space. Facilitators honour all cultural, religious, and community identities. Distress monitoring runs throughout.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">Verbal consent · Group confidentiality · Voluntary participation · Distress monitoring · Referral plan · Cultural inclusivity · Non-hierarchical seating · Warm non-clinical language · Never leaving a distressed participant alone</div></div>
+    </div>
+    <!-- EAT -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#3a2a5a,#4e3a7a);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">2</div>
+        <div><h3 style="color:#fff;">Expressive Arts Therapy (EAT)</h3><div style="color:rgba(213,206,240,.8);font-size:12px;letter-spacing:1px;">Malchiodi, 2011 · Regev &amp; Cohen-Yatziv, 2018 · Van der Kolk, 2014</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">EAT uses creative processes — visual art, movement, music, drama, writing — to support emotional processing and healing. Particularly effective where verbal language is a barrier due to literacy, language diversity, or the nature of traumatic experience (Malchiodi, 2011).</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">For women affected by any form of crisis, trauma is often stored in the body — pre-verbal or beyond words. Art provides a symbolic language that transcends verbal disclosure and is culturally neutral. Any woman, from any background, in any language, can trace her hand and fill it with colour and meaning.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">The central activity — tracing her hand and filling it with colours, shapes, and symbols — is the primary EAT intervention. The hand symbolises agency, capability, and connection, all eroded by crisis. By reclaiming and decorating her own hand outline, each woman symbolically reclaims her body, her identity, and her capacity.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">Hand tracing · Colour, symbol, and pattern-making · Writing strengths on coloured paper strips · Assembling the collective mural · Soft music during activity · Voluntary sharing</div></div>
+    </div>
+    <!-- Person-Centered -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#1e4a48,#2e6a65);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">3</div>
+        <div><h3 style="color:#fff;">Person-Centered / Humanistic Approach</h3><div style="color:rgba(200,240,236,.8);font-size:12px;letter-spacing:1px;">Rogers, 1961 · Kirschenbaum &amp; Jourdan, 2005</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">Every human being has an innate capacity for growth given the right conditions. The three core conditions: Empathy (understanding the client's inner world), Unconditional Positive Regard (acceptance without judgment), and Congruence (facilitator authenticity). The client is the expert on her own life (Rogers, 1961).</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">Crisis — particularly domestic violence, displacement, and conflict — erodes a woman's sense of self-worth, agency, and trust. The humanistic approach directly counters this: unconditional regard communicates that she is valued exactly as she is. Non-directive facilitation restores autonomy.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">No participant is told what to draw, what to feel, or how to share. Participants are allowed to proceed at their own pace. The facilitator holds a supportive presence, not an expert authority. The closing affirmation celebrates every participant's individual strengths and the group's collective capacity.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">Warm empathic opening and closing · Non-directive facilitation · Participant-led pacing · Voluntary sharing · Sensitive reflective listening · Affirming individual and group strengths</div></div>
+    </div>
+    <!-- Group Therapy -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#4a3010,#6a4820);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">4</div>
+        <div><h3 style="color:#fff;">Group Therapy &amp; Counselling Dynamics</h3><div style="color:rgba(240,226,190,.8);font-size:12px;letter-spacing:1px;">Yalom &amp; Leszcz, 2005 · Burlingame et al., 2004</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">Group therapy harnesses the unique healing potential of group context. Yalom and Leszcz (2005) identified eleven therapeutic factors including universality ("others share my experience"), cohesion (belonging and safety), altruism (the healing power of giving support), installation of hope, and interpersonal learning.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">Isolation is a consequence of all crisis experiences. Disaster severs community ties. Domestic violence creates enforced secrecy. Conflict displaces women from their networks. The group format re-creates communal belonging. When women discover others share similar experiences, shame diminishes and hope is restored.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">The circle formation with optional hand-holding activates cohesion and universality. The collective mural — every woman's hand drawing placed around a shared circle — is the physical embodiment of solidarity. Coloured paper strips with personal strengths fill the communal centre, showing that collective strength is built from each individual's contribution.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">Circle formation · Empowerment song · Non-hierarchical palm mat seating · Collective mural assembly · Voluntary sharing · Affirmative group closing</div></div>
+    </div>
+    <!-- Positive Psychology -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#3a1020,#6a2030);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">5</div>
+        <div><h3 style="color:#fff;">Positive Psychology &amp; Post-Traumatic Growth</h3><div style="color:rgba(240,200,210,.8);font-size:12px;letter-spacing:1px;">Seligman et al., 2005 · Tedeschi &amp; Calhoun, 2004</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">Positive psychology focuses on strengths, meaning, positive emotion, and hope rather than solely pathology (Seligman et al., 2005). Post-Traumatic Growth (PTG) theory recognises that survivors can experience positive psychological change — greater personal strength, new possibilities, and appreciation of life (Tedeschi &amp; Calhoun, 2004).</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">Crisis survivors are not only wounded — they are inherently resilient, resourceful, and capable of growth. Orienting toward strengths and PTG actively counters shame and victim-identity. It repositions each woman as a survivor with agency and a future — not a passive recipient of harm.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">The entire art activity is oriented toward strengths and hopes — not wounds. Each colour placed inside the traced hand is a deliberate act of positive self-identification. The psychoeducation phase explicitly affirms participants' existing strength and resilience. Every phase communicates: you are more than what happened to you.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">Strengths-focused psychoeducation · Hand drawing as strength-mapping · Writing personal strengths and hopes · Affirmative group closing · Collective mural as symbol of shared resilience and post-traumatic growth</div></div>
+    </div>
+    <!-- Somatic -->
+    <div class="theory-detail">
+      <div class="theory-detail-header" style="background:linear-gradient(135deg,#3a1a00,#6a3a10);">
+        <div class="t-num" style="background:rgba(255,255,255,.15);">6</div>
+        <div><h3 style="color:#fff;">Somatic Grounding: Simple Breathing Exercise</h3><div style="color:rgba(240,220,190,.8);font-size:12px;letter-spacing:1px;">Levine, 2010 · Van der Kolk, 2014 · SAMHSA TIC</div></div>
+      </div>
+      <div class="theory-row"><div class="theory-row-label">Core Principles</div><div class="theory-row-val">Trauma dysregulates the autonomic nervous system, triggering the sympathetic stress response. Slow, conscious diaphragmatic breathing activates the parasympathetic nervous system, lowers physiological arousal, and helps the body return to a regulated, present state (Levine, 2010; Van der Kolk, 2014).</div></div>
+      <div class="theory-row"><div class="theory-row-label">Relevance to All Crisis Contexts</div><div class="theory-row-val">All trauma — regardless of cause — lives in the body. Before any psychological processing is possible, the body must feel safe enough to engage. The breathing exercise requires no equipment, no literacy, no shared language, and no cultural adaptation — universally accessible in every crisis context.</div></div>
+      <div class="theory-row"><div class="theory-row-label">How It Works in This Session</div><div class="theory-row-val">Positioned between psychoeducation and the art activity as a physiological bridge. The 4-count inhale, 2-count hold, and 6-count slow exhale pattern activates the parasympathetic response. Three opening breaths and three closing breaths frame the session with intentional physiological safety.</div></div>
+      <div class="theory-row"><div class="theory-row-label">Key Techniques</div><div class="theory-row-val">4-count inhale · 2-count hold · 6-count slow exhale · Repeat 2–3 times · Silence after each round · Natural breathing throughout art activity · No instruction during the creative phase</div></div>
+    </div>
+  </div>
+
+  <!-- Emergency Section — NEW from document Section 8 -->
+  <div class="emergency-section">
+    <div class="emergency-inner">
+      <div class="sec-label" style="color:rgba(255,200,200,.7);">⚠ Section 8</div>
+      <h2 class="sec-title" style="color:#fff;margin-bottom:6px;">If the Unexpected Happens</h2>
+      <p style="color:rgba(255,255,255,.7);font-size:15px;margin-bottom:28px;"><strong style="color:#fff;">Stay calm. You are the anchor for the group.</strong></p>
+      <div class="sec-label" style="color:rgba(255,200,200,.7);margin-top:20px;">Signs to Watch For</div>
+      <div class="sign-grid">
+        <div class="sign-card"><div class="sign-icon">😢</div><p>A participant becomes tearful, shaking, or hyperventilating</p></div>
+        <div class="sign-card"><div class="sign-icon">😶</div><p>A participant becomes silent, blank, or dissociated</p></div>
+        <div class="sign-card"><div class="sign-icon">💬</div><p>A participant expresses hopelessness or distress verbally</p></div>
+        <div class="sign-card"><div class="sign-icon">🚪</div><p>A participant suddenly leaves the space</p></div>
+        <div class="sign-card"><div class="sign-icon">😰</div><p>A participant becomes agitated or overwhelmed</p></div>
+      </div>
+      <div class="sec-label" style="color:rgba(255,200,150,.7);margin-top:36px;">What To Do — Step by Step</div>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><p>PAUSE the activity quietly without drawing attention to the participant</p></div>
+        <div class="step-card"><div class="step-num">2</div><p>Approach gently. Sit beside them. Speak softly.</p></div>
+        <div class="step-card"><div class="step-num">3</div><p>Say: <em>"You are safe. I am here. Take a slow breath."</em></p></div>
+        <div class="step-card"><div class="step-num">4</div><p>If needed — step outside quietly with a second facilitator.</p></div>
+        <div class="step-card"><div class="step-num">5</div><p>NEVER leave the participant alone at any time.</p></div>
+        <div class="step-card"><div class="step-num">6</div><p>Continue the group session with remaining co-facilitators.</p></div>
+        <div class="step-card"><div class="step-num">7</div><p>Document the incident fully after the session ends.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ethics -->
+  <div class="ethics-section">
+    <div class="ethics-inner">
+      <div class="sec-label" style="color:var(--sage-light);">Ethical Commitments</div>
+      <h2 class="sec-title" style="color:#fff;">Ethical &amp; Cultural Principles</h2>
+      <div class="ethics-grid">
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Obtain informed verbal consent before beginning every session</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Establish confidentiality as a shared group agreement at the outset</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Sharing artwork is always voluntary — never pressure any participant</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Monitor for distress: tearfulness, shaking, dissociation, silence, agitation</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Hold a referral plan ready before every session begins</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Never leave a distressed participant alone at any time</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Close every session safely and intentionally</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Seek supervision if facilitators experience vicarious trauma</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Honour all cultural, religious, and community identities present</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>Use warm, simple language — avoid clinical or formal terminology</p></div>
+        <div class="ethic-item"><div class="ethic-check">✓</div><p>After every session: debrief, self-reflect, document incidents, celebrate what went well</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="resources-section">
+    <div class="resources-inner">
+      <div class="sec-label">Key Organisations &amp; Websites</div>
+      <h2 class="sec-title">Online Resources for Facilitators</h2>
+      <div class="res-category">
+        <div class="res-cat-header"><div class="res-cat-dot" style="background:var(--green-mid);"></div><h3>Mental Health &amp; Psychosocial Support in Emergencies</h3></div>
+        <div class="res-grid">
+          <div class="res-card"><div class="res-name">IASC MHPSS Guidelines</div><div class="res-desc">Global guidelines on MHPSS in humanitarian settings</div><a href="https://www.mhinnovation.net/resources/iasc-guidelines-mental-health-and-psychosocial-support-emergency-settings" target="_blank">mhinnovation.net →</a></div>
+          <div class="res-card"><div class="res-name">WHO Mental Health in Emergencies</div><div class="res-desc">WHO guidance on mental health support after crisis events</div><a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-in-emergencies" target="_blank">who.int →</a></div>
+          <div class="res-card"><div class="res-name">UNHCR MHPSS Resources</div><div class="res-desc">Refugee and displacement-specific MHPSS tools</div><a href="https://www.unhcr.org/mental-health-and-psychosocial-support.html" target="_blank">unhcr.org →</a></div>
+          <div class="res-card"><div class="res-name">IFRC PFA &amp; MHPSS</div><div class="res-desc">Psychological First Aid and psychosocial support resources</div><a href="https://pscentre.org" target="_blank">pscentre.org →</a></div>
+          <div class="res-card"><div class="res-name">Mental Health Innovation Network</div><div class="res-desc">Mental health innovation for humanitarian contexts</div><a href="https://www.mhinnovation.net" target="_blank">mhinnovation.net →</a></div>
+        </div>
+      </div>
+      <div class="res-category">
+        <div class="res-cat-header"><div class="res-cat-dot" style="background:var(--teal);"></div><h3>Trauma, Healing &amp; Post-Traumatic Growth</h3></div>
+        <div class="res-grid">
+          <div class="res-card"><div class="res-name">SAMHSA Trauma-Informed Care</div><div class="res-desc">TIC framework, tools, and implementation guidance</div><a href="https://www.samhsa.gov/trauma-violence" target="_blank">samhsa.gov →</a></div>
+          <div class="res-card"><div class="res-name">National Child Traumatic Stress Network</div><div class="res-desc">Trauma resources, treatment guides, training materials</div><a href="https://www.nctsn.org" target="_blank">nctsn.org →</a></div>
+          <div class="res-card"><div class="res-name">PTG Research Group</div><div class="res-desc">Post-Traumatic Growth theory, research, and resources</div><a href="https://ptgi.charlotte.edu" target="_blank">ptgi.charlotte.edu →</a></div>
+          <div class="res-card"><div class="res-name">Trauma-Informed Care Implementation</div><div class="res-desc">Practical tools for implementing TIC in organisations</div><a href="https://traumainformedcare.chcs.org" target="_blank">traumainformedcare.chcs.org →</a></div>
+        </div>
+      </div>
+      <div class="res-category">
+        <div class="res-cat-header"><div class="res-cat-dot" style="background:var(--lavender);"></div><h3>Expressive Arts Therapy &amp; Creative Therapies</h3></div>
+        <div class="res-grid">
+          <div class="res-card"><div class="res-name">American Art Therapy Association</div><div class="res-desc">Art therapy standards, research, and professional development</div><a href="https://arttherapy.org" target="_blank">arttherapy.org →</a></div>
+          <div class="res-card"><div class="res-name">International Expressive Arts Therapy Association</div><div class="res-desc">Global EAT standards, training, and resources</div><a href="https://www.ieata.org" target="_blank">ieata.org →</a></div>
+          <div class="res-card"><div class="res-name">Frontiers in Psychology</div><div class="res-desc">Peer-reviewed research on art therapy effectiveness</div><a href="https://www.frontiersin.org/journals/psychology" target="_blank">frontiersin.org →</a></div>
+        </div>
+      </div>
+      <div class="res-category">
+        <div class="res-cat-header"><div class="res-cat-dot" style="background:var(--rose);"></div><h3>Women, Gender-Based Violence &amp; Empowerment</h3></div>
+        <div class="res-grid">
+          <div class="res-card"><div class="res-name">UN Women</div><div class="res-desc">Global resources on gender equality, crisis, and women's empowerment</div><a href="https://www.unwomen.org" target="_blank">unwomen.org →</a></div>
+          <div class="res-card"><div class="res-name">UNFPA — Gender-Based Violence</div><div class="res-desc">GBV response in humanitarian settings</div><a href="https://www.unfpa.org/gender-based-violence" target="_blank">unfpa.org →</a></div>
+          <div class="res-card"><div class="res-name">WHO — Violence Against Women</div><div class="res-desc">Evidence and guidance on gender-based violence and health</div><a href="https://www.who.int/news-room/fact-sheets/detail/violence-against-women" target="_blank">who.int →</a></div>
+          <div class="res-card"><div class="res-name">IRC Women &amp; Girls</div><div class="res-desc">Programs and resources for women in crisis and displacement</div><a href="https://www.rescue.org/topic/women-and-girls" target="_blank">rescue.org →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bibliography -->
+  <div class="references-section">
+    <div class="references-inner">
+      <div class="sec-label">Bibliography</div>
+      <h2 class="sec-title">References</h2>
+      <div class="ref-entry">Burlingame, G. M., Fuhriman, A., &amp; Mosier, J. (2004). The differential effectiveness of group psychotherapy. <em>Group Dynamics: Theory, Research and Practice, 7</em>(1), 3–12. <a href="https://doi.org/10.1037/1089-2699.7.1.3" target="_blank">https://doi.org/10.1037/1089-2699.7.1.3</a></div>
+      <div class="ref-entry">Herman, J. L. (1992). <em>Trauma and Recovery: The Aftermath of Violence.</em> Basic Books. <a href="https://www.basicbooks.com/titles/judith-lewis-herman/trauma-and-recovery/9780465087303/" target="_blank">basicbooks.com</a></div>
+      <div class="ref-entry">IASC. (2007). <em>IASC Guidelines on Mental Health and Psychosocial Support in Emergency Settings.</em> UNHCR. <a href="https://www.mhinnovation.net/resources/iasc-guidelines-mental-health-and-psychosocial-support-emergency-settings" target="_blank">mhinnovation.net</a></div>
+      <div class="ref-entry">IFRC. (2019). <em>A Short Introduction to Psychological First Aid.</em> IFRC Reference Centre for Psychosocial Support. <a href="https://pscentre.org/wp-content/uploads/2019/07/PFA-Intro-low.pdf" target="_blank">pscentre.org</a></div>
+      <div class="ref-entry">Kirschenbaum, H., &amp; Jourdan, A. (2005). The current status of Carl Rogers and the Person-Centered Approach. <em>Psychotherapy, 42</em>(1), 37–51. <a href="https://doi.org/10.1037/0033-3204.42.1.37" target="_blank">https://doi.org/10.1037/0033-3204.42.1.37</a></div>
+      <div class="ref-entry">Levine, P. A. (2010). <em>In an Unspoken Voice.</em> North Atlantic Books. <a href="https://www.northatlanticbooks.com/shop/in-an-unspoken-voice/" target="_blank">northatlanticbooks.com</a></div>
+      <div class="ref-entry">Malchiodi, C. A. (Ed.) (2011). <em>Handbook of Art Therapy</em> (2nd ed.). Guilford Press. <a href="https://www.guilford.com/books/Handbook-of-Art-Therapy/Malchiodi/9781462507054" target="_blank">guilford.com</a></div>
+      <div class="ref-entry">Regev, D., &amp; Cohen-Yatziv, L. (2018). Effectiveness of art therapy with adult clients in 2018. <em>Frontiers in Psychology, 9,</em> 1531. <a href="https://doi.org/10.3389/fpsyg.2018.01531" target="_blank">https://doi.org/10.3389/fpsyg.2018.01531</a></div>
+      <div class="ref-entry">Rogers, C. R. (1961). <em>On Becoming a Person.</em> Houghton Mifflin. <a href="https://www.houghtonmifflinbooks.com" target="_blank">houghtonmifflinbooks.com</a></div>
+      <div class="ref-entry">SAMHSA. (2014). <em>Concept of Trauma and Guidance for a Trauma-Informed Approach.</em> SAMHSA Publications. <a href="https://store.samhsa.gov/product/SAMHSAS-Concept-of-Trauma-and-Guidance-for-a-Trauma-Informed-Approach/SMA14-4884" target="_blank">store.samhsa.gov</a></div>
+      <div class="ref-entry">Seligman, M. E. P., Steen, T. A., Park, N., &amp; Peterson, C. (2005). Positive Psychology Progress. <em>American Psychologist, 60</em>(5), 410–421. <a href="https://doi.org/10.1037/0003-066x.60.5.410" target="_blank">https://doi.org/10.1037/0003-066x.60.5.410</a></div>
+      <div class="ref-entry">Tedeschi, R. G., &amp; Calhoun, L. G. (2004). Posttraumatic Growth: Conceptual Foundations and Empirical Evidence. <em>Psychological Inquiry, 15</em>(1), 1–18. <a href="https://doi.org/10.1207/s15327965pli1501_01" target="_blank">https://doi.org/10.1207/s15327965pli1501_01</a></div>
+      <div class="ref-entry">Van der Kolk, B. A. (2014). <em>The Body Keeps the Score.</em> Viking. <a href="https://www.penguinrandomhouse.com/books/313183/the-body-keeps-the-score-by-bessel-van-der-kolk-m-d/" target="_blank">penguinrandomhouse.com</a></div>
+      <div class="ref-entry">WHO. (2013). <em>Mental Health and Psychosocial Support in Humanitarian Emergencies.</em> World Health Organization. <a href="https://www.who.int/publications/i/item/mental-health-and-psychosocial-support-in-humanitarian-emergencies" target="_blank">who.int</a></div>
+      <div class="ref-entry">Yalom, I. D., &amp; Leszcz, M. (2005). <em>The Theory and Practice of Group Psychotherapy</em> (5th ed.). Basic Books. <a href="https://www.basicbooks.com/titles/irvin-d-yalom/the-theory-and-practice-of-group-psychotherapy/9780465092840/" target="_blank">basicbooks.com</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div id="contact" class="section">
+  <div class="page-hero">
+    <div class="pg-tag">✦ Reach Us ✦</div>
+    <h2>Contact HER Circle</h2>
+    <p>For programme inquiries, referrals, facilitator training, partnership opportunities, or research collaboration — we would love to hear from you.</p>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-left">
+      <div class="sec-label" style="color:var(--sage-light);">Get In Touch</div>
+      <h2 class="sec-title" style="color:#fff;">Our Details</h2>
+      <div style="width:54px;height:3px;background:linear-gradient(90deg,var(--sage),var(--teal));border-radius:2px;margin:14px 0 28px;"></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-info"><div class="c-label">Address</div><div class="c-val">No. 45, Kings Road,<br>Colombo 04, Sri Lanka</div></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-info"><div class="c-label">Telephone</div><div class="c-val">+94 11 2596475<br>+94 11 4578965</div></div></div>
+      <div class="contact-item"><div class="contact-icon">✉️</div><div class="contact-info"><div class="c-label">Email</div><div class="c-val">hercircle@ingo.lk</div></div></div>
+      <div class="contact-item"><div class="contact-icon">🌐</div><div class="contact-info"><div class="c-label">Website</div><div class="c-val">www.hercircle.ingo.lk</div></div></div>
+      <div style="margin-top:36px;padding:26px;background:rgba(127,175,140,.1);border-radius:16px;border:1px solid rgba(127,175,140,.22);">
+        <div style="color:var(--sage-light);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase;">After Every Session</div>
+        <div style="color:rgba(255,255,255,.68);font-size:13.5px;line-height:2;">
+          ✦ Debrief with all co-facilitators<br>
+          ✦ Complete self-reflection checklist<br>
+          ✦ Seek supervision if needed<br>
+          ✦ Document any incidents<br>
+          ✦ Celebrate what went well
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="sec-label">Send a Message</div>
+      <h2 class="sec-title">We'd Love to Hear From You</h2>
+      <div style="width:54px;height:3px;background:linear-gradient(90deg,var(--sage),var(--teal));border-radius:2px;margin:14px 0 28px;"></div>
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Enter your full name"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Inquiry Type</label>
+        <select>
+          <option value="">Select an inquiry type</option>
+          <option>Programme Information</option>
+          <option>Referral / Participant Enrolment</option>
+          <option>Facilitator Training</option>
+          <option>Partnership / Collaboration</option>
+          <option>Research Inquiry</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Your Message</label><textarea placeholder="Write your message here…"></textarea></div>
+      <button class="submit-btn">Send Message</button>
+    </div>
+  </div>
+
+  <!-- Facilitators Table -->
+  <div class="facilitators-section">
+    <div class="facilitators-inner">
+      <div class="sec-label">Section 10</div>
+      <h2 class="sec-title">HER Circle Facilitators</h2>
+      <p class="body-text" style="max-width:680px;">Our trained facilitators bring expertise in trauma-informed practice, expressive arts therapy, and group counselling. Each holds a Postgraduate Diploma and Masters in Counselling and Psychosocial Support.</p>
+      <div class="fac-grid">
+
+        <div class="fac-card">
+          <div class="fac-num-badge">01</div>
+          <div class="fac-avatar">FS</div>
+          <div class="fac-info">
+            <div class="fac-name">Mr. FHID Silva</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-21</div>
+            <a class="fac-phone" href="tel:+94773404280">📞 +94 77 340 4280</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">02</div>
+          <div class="fac-avatar">PF</div>
+          <div class="fac-info">
+            <div class="fac-name">Mrs. P Figurado</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-06</div>
+            <a class="fac-phone" href="tel:+94772985044">📞 +94 77 298 5044</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">03</div>
+          <div class="fac-avatar">IS</div>
+          <div class="fac-info">
+            <div class="fac-name">Mrs. IH Sinhapurage</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-22</div>
+            <a class="fac-phone" href="tel:+94763945324">📞 +94 76 394 5324</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">04</div>
+          <div class="fac-avatar">PD</div>
+          <div class="fac-info">
+            <div class="fac-name">Ms. PSD De Silva</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-03</div>
+            <a class="fac-phone" href="tel:+94712344156">📞 +94 71 234 4156</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">05</div>
+          <div class="fac-avatar">ES</div>
+          <div class="fac-info">
+            <div class="fac-name">Mrs. EMN Sarangi</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-20</div>
+            <a class="fac-phone" href="tel:+94775911401">📞 +94 77 591 1401</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">06</div>
+          <div class="fac-avatar">HP</div>
+          <div class="fac-info">
+            <div class="fac-name">Mrs. HP Punchihewa</div>
+            <div class="fac-reg">Reg. No: 2021/PgD-2025/MCP-15</div>
+            <a class="fac-phone" href="tel:+94719884023">📞 +94 71 988 4023</a>
+          </div>
+        </div>
+
+        <div class="fac-card">
+          <div class="fac-num-badge">07</div>
+          <div class="fac-avatar">WM</div>
+          <div class="fac-info">
+            <div class="fac-name">Mr. WGC Mahesh</div>
+            <div class="fac-reg">Reg. No: 2023/PgD-2025/MCP-11</div>
+            <a class="fac-phone" href="tel:+393932630208">📞 +39 393 263 0208</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2025 HER Circle Organization · No. 45, Kings Road, Colombo 04, Sri Lanka · hercircle@ingo.lk</div>
+  <div class="f-tri">Healing &nbsp;·&nbsp; Empowerment &nbsp;·&nbsp; Resilience</div>
+</footer>
+
+<script>
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    if (btn) btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
